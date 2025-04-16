@@ -22,8 +22,8 @@ Avant de commencer, assurez-vous d'avoir **Docker** et **Docker Compose** instal
 1. **Clonez le repository** :
 
     ```bash
-    git clone https://github.com/warziz/my-app.git
-    cd my-app
+    git clone https://github.com/Warziz/SimpleWebService.git
+    cd SimpleWebService
     ```
 
 2. **Construisez et lancez les services** :
