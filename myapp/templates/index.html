@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'accueil</title>
+</head>
+<body>
+
+    <h1>Bienvenue sur notre service web</h1>
+
+    <h2>README</h2>
+    <p>Voici un petit guide pour comprendre l'utilisation de ce service web.</p>
+
+    <h2>1. Calculatrice</h2>
+    <p>Effectuez des calculs via API :</p>
+    <ul>
+        <li><code>curl http://localhost:8000/calculatrice?expr=5+%2B+8</code></li>
+        <li><code>curl http://localhost:8000/calculatrice?expr=5*8</code></li>
+    </ul>
+
+    <h2>2. Enregistrement et Authentification</h2>
+    <h3>Enregistrement</h3>
+    <ul>
+        <li><code>curl -X PUT http://localhost:8000/totp/register -d '{"secret":"AAAAAAAA", "user":"robert"}'</code></li>
+    </ul>
+    <h3>Authentification</h3>
+    <ul>
+        <li><code>curl -X POST http://localhost:8000/totp/auth -H "X-User: robert" -d '{"password":"599e79061e8cc3b4"}'</code></li>
+    </ul>
+
+    <h2>3. Commerce en ligne</h2>
+    
+    <h3>Ajout des stocks</h3>
+    <ul>
+        <li><code>curl -X PUT http://localhost:8000/shop/stock -d '[{"id": 123, "amount": 4}, {"id": 64, "amount": 1}]'</code></li>
+    </ul>
+
+    <h3>Modification du panier</h3>
+    <ul>
+        <li><code>curl -X POST http://localhost:8000/shop/basket -d '{"id": 214124, "basket": [{"id": 123, "amount": 5}, {"id": 64, "amount": 2}]}'</code></li>
+    </ul>
+
+    <h3>Visualisation des stocks</h3>
+    <ul>
+        <li><code>curl -X GET http://localhost:8000/shop/stock</code></li>
+    </ul>
+
+    <h3>Confirmation de la commande</h3>
+    <ul>
+        <li><code>curl -X POST http://localhost:8000/shop/checkout -d '{"id": 214124}'</code></li>
+    </ul>
+
+</body>
+</html>

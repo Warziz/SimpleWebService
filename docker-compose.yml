@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: flask-app
+    environment:
+      GPG_PASSPHRASE: StrongPassword123
+      DB_HOST: db
+      DB_USER: flaskuser
+      DB_PASSWORD: Password123
+      DB_NAME: myapp
+      DB_PORT: 3306
+      CONFIG_TYPE: development
+    ports:
+      - "8000:8000"   
+    depends_on:
+      db:
+        condition: service_healthy          
+    networks:
+      custom-bridge:
+
+  db:
+    image: mysql/mysql-server
+    container_name: mysql1
+    environment:
+      MYSQL_ROOT_PASSWORD: StrongPassword123
+      MYSQL_USER: flaskuser
+      MYSQL_PASSWORD: Password123
+      MYSQL_DATABASE: myapp
+    healthcheck:
+      test: "mysql --user=$$MYSQL_USER --password=$$MYSQL_PASSWORD --execute \"SHOW DATABASES;\" || exit 1"
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    networks:
+      custom-bridge:
+      
+networks:
+  custom-bridge:
+
